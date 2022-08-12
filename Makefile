@@ -1,4 +1,10 @@
-.PHONY: docker
+SHELL := /bin/bash
+MODULE := $(notdir $(PWD))
+USERID := $(shell id -u)
+USERGROUP := $(shell id -g)
 
-docker: Dockerfile
-	docker build -t terraform-module-readme-generator:latest .
+.PHONY: readme
+
+readme:
+		docker run --rm -e MODULE=$(MODULE) --user $(USERID):$(USERGROUP) -it -v $(PWD):/go/src/app/$(MODULE) odelys/readme_generator:latest
+

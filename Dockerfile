@@ -4,7 +4,7 @@ ENV GO111MODULE=on
 
 # Get terraform, dep
 RUN apk --no-cache add curl git gcc g++ make ca-certificates && \
-	go get github.com/hashicorp/terraform-config-inspect
+	go install github.com/manfred0191/terraform-config-inspect@v0.5.0
 
 ARG GOPROJECTPATH=/go/src/app
 
